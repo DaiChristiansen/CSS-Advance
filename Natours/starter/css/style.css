@@ -26,7 +26,7 @@ body {
 
 .header {
     height: 95vh;
-    background-image: linear-gradient(to right bottom, #7ed56fb7, #28b485bb), url(../img/hero.jpg);
+    background-image: linear-gradient(to right bottom, #4ebe3ac7, #2abb8bc9), url(../img/hero.jpg);
     background-size: cover;
     background-position: top;
     position: relative;
@@ -47,28 +47,144 @@ body {
 
 .text-box{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
-    transform: translate()
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-bottom: 60px;
 }
 
 
-.heading-primary{
+.heading-primary{ 
     color: #ffffff;
     text-transform: uppercase;
+
+    backface-visibility: hidden; /* La animación se mueve un poco hacia arriba, por un error desconocido, y este sería el truco para arregrarlo*/
+    margin-bottom: 60px;
 }
 
-.heading-primary-main{
+.heading-primary-main{ /*Titulo principal*/
     display: block;
     font-size: 60px;
-    font-weight: 600;
-    letter-spacing: 35px;
+    font-weight: 400; 
+    letter-spacing: 35px; /*Interletrado*/
+
+    animation-name: moveInLeft; /*Nombre que le pusimos a la animacion en @keyframes*/
+    animation-duration: 1s; /* Tiempo que va a durar la animación*/
+      
+    /*
+    animation-delay: 2s; Retrasa el inicio de la animación
+    animation-iteration-count: 3; Repite X cantidad de veces la animación
+    animation-timing-function: ease-out; La animación arranca rápido y se hace más lenta sobre el final, si hubiese sido ease-in, sería al revés
+*/
 }
 
-.heading-primary-sub{
+.heading-primary-sub{ /*Subtitulo*/
     display: block;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 17.4px;
 
+    animation-name: moveInRight; 
+    animation-duration: 1s;
+
+}
+
+@keyframes moveInLeft { /* Animacion por fotogramas, se puede poner cualquier valos de % para generar distintas animaciones
+    Va de izquierda a derecha*/
+    0% { /*Comienzo de la animación*/
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    80% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight { /* Animacion por fotogramas, se puede poner cualquier valos de % para generar distintas animaciones.
+    Va de derecha a izquierda*/
+    0% { /*Comienzo de la animación*/
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(0);
+    }
+}
+
+.btn:link, /* aparece en azul, como si fuera un link, que aun no ha sido clickeado*/
+btn:visited /* cuando el usuario ya hizo click en el boton*/ {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block; /* para que tenga su propio espacio y no se superponga con otra cosa*/
+    border-radius: 100px;
+    transition: all /*tipo de transicion*/ 0.2s /*tiempo de transición*/;
+    position: relative;
+}
+
+.btn:hover { /*cuando el usuario pasa el cursor por encima*/
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+.btn:active { /*cuando se hace click en el boton*/
+    transform: translateY(-1px); /*es en relacion con el estado inicial*/
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.btb-white {
+    background-color: #ffffff;
+    color: #777;
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /*define la posicion de los elementos si entran uno encima de otro*/
+    transition: all .4s;
+}
+ 
+
+.btn-white::after {
+    background-color: #ffffff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom .5s ease-out .75s;
 }
