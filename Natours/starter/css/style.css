@@ -9,14 +9,18 @@ prueba
 
 */
 
-* {
+*,
+::after,
+::before {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: inherit;
 }
 
 html {
-    font-size: 10px;
+    font-size: 62.5%; /* Queremos 16px de fuente, pero si el usuario
+    tiene mala visión y quiere modificarlo, poniendo px, no puede,
+    entonces se pone % */
 }
 
 body {
@@ -26,6 +30,8 @@ body {
     line-height: 1.7;
     color: 777;
     padding: 3rem;
+
+    box-sizing: border-box;
 }
 
 .header {
@@ -39,17 +45,17 @@ body {
 
 }
 
-.logo-box{
+.header__logo-box{
     position: absolute;
     top: 4rem;
     left: 4rem;
 }
 
-.logo{
+.header__logo{
     height: 3.5rem;
 }
 
-.text-box{
+.header__text-box{
     position: absolute;
     top: 40%;
     left: 50%;
@@ -67,7 +73,7 @@ body {
     margin-bottom: 6rem;
 }
 
-.heading-primary-main{ /*Titulo principal*/
+.heading-primary--main{ /*Titulo principal*/
     display: block;
     font-size: 6rem;
     font-weight: 400; 
@@ -83,7 +89,7 @@ body {
 */
 }
 
-.heading-primary-sub{ /*Subtitulo*/
+.heading-primary--sub{ /*Subtitulo*/
     display: block;
     font-size: 2rem;
     font-weight: 700;
@@ -163,7 +169,7 @@ btn:visited /* cuando el usuario ya hizo click en el boton*/ {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-.btb-white {
+.btb--white {
     background-color: #ffffff;
     color: #777;
 }
@@ -182,7 +188,7 @@ btn:visited /* cuando el usuario ya hizo click en el boton*/ {
 }
  
 
-.btn-white::after {
+.btn--white::after {
     background-color: #ffffff;
 }
 
@@ -191,6 +197,6 @@ btn:visited /* cuando el usuario ya hizo click en el boton*/ {
     opacity: 100;
 }
 
-.btn-animated {
+.btn--animated {
     animation: moveInBottom .5s ease-out .75s;
 }
