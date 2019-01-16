@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/*Variables para los colores*/
 *,
 ::after,
 ::before {
@@ -28,22 +29,19 @@ body {
   background-position: top;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%); }
-
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem; }
-
-.header__logo {
-  height: 3.5rem; }
-
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  margin-bottom: 60px; }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-bottom: 60px; }
 
 .heading-primary {
   color: #ffffff;
@@ -51,32 +49,30 @@ body {
   backface-visibility: hidden;
   /* La animación se mueve un poco hacia arriba, por un error desconocido, y este sería el truco para arregrarlo*/
   margin-bottom: 6rem; }
-
-.heading-primary--main {
-  /*Titulo principal*/
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-  /*Interletrado*/
-  animation-name: moveInLeft;
-  /*Nombre que le pusimos a la animacion en @keyframes*/
-  animation-duration: 1s;
-  /* Tiempo que va a durar la animación*/
-  /*
-    animation-delay: 2s; Retrasa el inicio de la animación
-    animation-iteration-count: 3; Repite X cantidad de veces la animación
-    animation-timing-function: ease-out; La animación arranca rápido y se hace más lenta sobre el final, si hubiese sido ease-in, sería al revés
-*/ }
-
-.heading-primary--sub {
-  /*Subtitulo*/
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-  animation-name: moveInRight;
-  animation-duration: 1s; }
+  .heading-primary--main {
+    /*Titulo principal*/
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    /*Interletrado*/
+    animation-name: moveInLeft;
+    /*Nombre que le pusimos a la animacion en @keyframes*/
+    animation-duration: 1s;
+    /* Tiempo que va a durar la animación*/
+    /*
+      animation-delay: 2s; Retrasa el inicio de la animación
+      animation-iteration-count: 3; Repite X cantidad de veces la animación
+      animation-timing-function: ease-out; La animación arranca rápido y se hace más lenta sobre el final, si hubiese sido ease-in, sería al revés
+  */ }
+  .heading-primary--sub {
+    /*Subtitulo*/
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation-name: moveInRight;
+    animation-duration: 1s; }
 
 @keyframes moveInLeft {
   /* Animacion por fotogramas, se puede poner cualquier valos de % para generar distintas animaciones
@@ -112,8 +108,7 @@ body {
     opacity: 1;
     transform: translate(0); } }
 
-.btn:link,
-btn:visited {
+.btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
   padding: 1.5rem 4rem;
@@ -128,17 +123,22 @@ btn:visited {
   /*cuando el usuario pasa el cursor por encima*/
   transform: translateY(-3px);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 100; }
 
 .btn:active {
   /*cuando se hace click en el boton*/
-  outline: none;
+  /* outline: none;*/
   transform: translateY(-1px);
   /*es en relacion con el estado inicial*/
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
 
-.btb--white {
+.btn--white {
   background-color: #ffffff;
   color: #777777; }
+  .btn--white::after {
+    background-color: #ffffff; }
 
 .btn::after {
   content: "";
@@ -152,13 +152,6 @@ btn:visited {
   z-index: -1;
   /*define la posicion de los elementos si entran uno encima de otro*/
   transition: all .4s; }
-
-.btn--white::after {
-  background-color: #ffffff; }
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 100; }
 
 .btn--animated {
   animation: moveInBottom .5s ease-out .75s; }

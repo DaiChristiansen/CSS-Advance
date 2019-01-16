@@ -1,12 +1,15 @@
 @charset "UTF-8";
 
-
+/*Variables para los colores*/
 $color-primary: #55c57a;
 $color-primary-light: #7ed56f;
 $color-primary-dark: #28b485;
 
 $color-grey-dark:#777777;
-$color-white: red;
+$color-white: #ffffff;
+$color-black: #000;
+
+
 *,
 ::after,
 ::before {
@@ -39,56 +42,67 @@ body {
   background-size: cover;
   background-position: top;
   position: relative;
-  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%); }
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%); 
 
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem; }
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; 
+  }
 
-.header__logo {
-  height: 3.5rem; }
+  &__logo {
+    height: 3.5rem; 
+  }
+  
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-bottom: 60px; 
+  }
 
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  margin-bottom: 60px; }
+}
 
 .heading-primary {
-  color: #ffffff;
+  color: $color-white;
   text-transform: uppercase;
   backface-visibility: hidden;
   /* La animación se mueve un poco hacia arriba, por un error desconocido, y este sería el truco para arregrarlo*/
-  margin-bottom: 6rem; }
+  margin-bottom: 6rem; 
 
-.heading-primary--main {
-  /*Titulo principal*/
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-  /*Interletrado*/
-  animation-name: moveInLeft;
-  /*Nombre que le pusimos a la animacion en @keyframes*/
-  animation-duration: 1s;
-  /* Tiempo que va a durar la animación*/
-  /*
-    animation-delay: 2s; Retrasa el inicio de la animación
-    animation-iteration-count: 3; Repite X cantidad de veces la animación
-    animation-timing-function: ease-out; La animación arranca rápido y se hace más lenta sobre el final, si hubiese sido ease-in, sería al revés
-*/ }
+  &--main {
+    /*Titulo principal*/
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    /*Interletrado*/
+    animation-name: moveInLeft;
+    /*Nombre que le pusimos a la animacion en @keyframes*/
+    animation-duration: 1s;
+    /* Tiempo que va a durar la animación*/
+    /*
+      animation-delay: 2s; Retrasa el inicio de la animación
+      animation-iteration-count: 3; Repite X cantidad de veces la animación
+      animation-timing-function: ease-out; La animación arranca rápido y se hace más lenta sobre el final, si hubiese sido ease-in, sería al revés
+  */ 
+  }
+  
+  &--sub {
+    /*Subtitulo*/
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation-name: moveInRight;
+    animation-duration: 1s; 
+  }
 
-.heading-primary--sub {
-  /*Subtitulo*/
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-  animation-name: moveInRight;
-  animation-duration: 1s; }
+}
+
+
 
 @keyframes moveInLeft {
   /* Animacion por fotogramas, se puede poner cualquier valos de % para generar distintas animaciones
@@ -124,54 +138,65 @@ body {
     opacity: 1;
     transform: translate(0); } }
 
-.btn:link,
-btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  /* para que tenga su propio espacio y no se superponga con otra cosa*/
-  border-radius: 10rem;
-  transition: all 0.2s;
-  position: relative;
-  font-size: 1.6rem; }
+.btn {
 
-.btn:hover {
-  /*cuando el usuario pasa el cursor por encima*/
-  transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    /* para que tenga su propio espacio y no se superponga con otra cosa*/
+    border-radius: 10rem;
+    transition: all 0.2s;
+    position: relative;
+    font-size: 1.6rem; }
+  
+  &:hover {
+    /*cuando el usuario pasa el cursor por encima*/
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  
+      &::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 100; 
+      }
+  }
+  
+  &:active {
+    /*cuando se hace click en el boton*/
+   /* outline: none;*/
+    transform: translateY(-1px);
+    /*es en relacion con el estado inicial*/
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2); 
+  }
+  
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+    
+      &::after {
+        background-color: $color-white; 
+      }
+  }
+  
+  &::after {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      border-radius: 10rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      /*define la posicion de los elementos si entran uno encima de otro*/
+      transition: all .4s; 
+  }
+  
+  &--animated {
+    animation: moveInBottom .5s ease-out .75s; }
 
-.btn:active {
-  /*cuando se hace click en el boton*/
-  outline: none;
-  transform: translateY(-1px);
-  /*es en relacion con el estado inicial*/
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
-
-.btb--white {
-  background-color: #ffffff;
-  color: $color-grey-dark;
 }
 
-.btn::after {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  /*define la posicion de los elementos si entran uno encima de otro*/
-  transition: all .4s; }
 
-.btn--white::after {
-  background-color: #ffffff; }
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 100; }
-
-.btn--animated {
-  animation: moveInBottom .5s ease-out .75s; }
