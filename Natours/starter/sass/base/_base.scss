@@ -1,0 +1,15 @@
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  /*esto define 1rem*/  font-size: 62.5%;
+  /* Queremos 16px de fuente, pero si el usuario
+    tiene mala visión y quiere modificarlo, poniendo px, no puede,
+    entonces se pone % */ }
+
+body {
+  box-sizing: border-box; }

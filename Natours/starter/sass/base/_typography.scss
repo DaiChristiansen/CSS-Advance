@@ -1,0 +1,45 @@
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400px;
+    /*font-size: 16px;*/
+    line-height: 1.7;
+    color: $color-grey-dark;
+    padding: 3rem;
+    }
+    
+    .heading-primary {
+    color: $color-white;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+    /* La animación se mueve un poco hacia arriba, por un error desconocido, y este sería el truco para arregrarlo*/
+    margin-bottom: 6rem; 
+  
+    &--main {
+      /*Titulo principal*/
+      display: block;
+      font-size: 6rem;
+      font-weight: 400;
+      letter-spacing: 3.5rem;
+      /*Interletrado*/
+      animation-name: moveInLeft;
+      /*Nombre que le pusimos a la animacion en @keyframes*/
+      animation-duration: 1s;
+      /* Tiempo que va a durar la animación*/
+      /*
+        animation-delay: 2s; Retrasa el inicio de la animación
+        animation-iteration-count: 3; Repite X cantidad de veces la animación
+        animation-timing-function: ease-out; La animación arranca rápido y se hace más lenta sobre el final, si hubiese sido ease-in, sería al revés
+    */ 
+    }
+    
+    &--sub {
+      /*Subtitulo*/
+      display: block;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1.75rem;
+      animation-name: moveInRight;
+      animation-duration: 1s; 
+    }
+  
+  }

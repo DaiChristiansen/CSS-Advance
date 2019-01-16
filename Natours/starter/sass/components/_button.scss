@@ -1,0 +1,60 @@
+.btn {
+
+    &:link,
+    &:visited {
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1.5rem 4rem;
+      display: inline-block;
+      /* para que tenga su propio espacio y no se superponga con otra cosa*/
+      border-radius: 10rem;
+      transition: all 0.2s;
+      position: relative;
+      font-size: 1.6rem; }
+    
+    &:hover {
+      /*cuando el usuario pasa el cursor por encima*/
+      transform: translateY(-3px);
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+    
+        &::after {
+          transform: scaleX(1.4) scaleY(1.6);
+          opacity: 100; 
+        }
+    }
+    
+    &:active {
+      /*cuando se hace click en el boton*/
+     /* outline: none;*/
+      transform: translateY(-1px);
+      /*es en relacion con el estado inicial*/
+      box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2); 
+    }
+    
+    &--white {
+      background-color: $color-white;
+      color: $color-grey-dark;
+      
+        &::after {
+          background-color: $color-white; 
+        }
+    }
+    
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        /*define la posicion de los elementos si entran uno encima de otro*/
+        transition: all .4s; 
+    }
+    
+    &--animated {
+      animation: moveInBottom .5s ease-out .75s; }
+  
+  }
